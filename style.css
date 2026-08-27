@@ -1,0 +1,854 @@
+:root {
+  --bg: #fff8ec;
+
+  --header-bg: rgba(196, 186, 168, 0.2);
+  --header-text: rgba(46, 43, 39, 0.5);
+
+  --footer-bg: rgba(137, 154, 87, 0.35);
+  --footer-text: rgba(77, 99, 14, 0.5);
+
+  --frame-bg: rgba(169, 158, 140, 0.45);
+
+  --ink: #2e2b27;
+  --ink-soft: rgba(46, 43, 39, 0.62);
+  --accent: #7c8f4a;
+
+  --font-display: "Montserrat", sans-serif;
+  --font-mono: "Courier Prime", "Courier New", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--ink);
+  font-family: var(--font-display);
+
+  /* solid base color first, then the knit pattern laid over it at ~44% —
+     a flat semi-opaque wash mixed into the tile keeps the texture soft
+     without needing an extra full-page overlay element */
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(255, 248, 236, 0.56), rgba(255, 248, 236, 0.56)),
+    url("assets/bg.jpeg");
+  background-repeat: repeat;
+  background-size: cover, 420px;
+}
+
+/* ---------- header ---------- */
+
+.topbar {
+  background-color: var(--header-bg);
+  padding: 17px 44px;
+  flex-shrink: 0;
+}
+
+.topbar__label {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: var(--header-text);
+}
+
+/* ---------- footer ---------- */
+
+.bottombar {
+  background-color: var(--footer-bg);
+  padding: 26px 44px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.bottombar__label {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  color: var(--footer-text);
+}
+
+/* ---------- desktop / main area ---------- */
+
+.desktop {
+  flex: 1;
+  padding: 56px 6vw 40px;
+}
+
+/* .stage sizes itself to its content (the intro block), and .folders
+   is positioned absolutely within it. Anchoring folders to the content's
+   own height — instead of the flex-grown .desktop, which can be much
+   taller than the content on short/wide windows — keeps the scattered
+   layout from stretching into empty space when the window is resized. */
+.stage {
+  position: relative;
+  max-width: 1400px;
+}
+
+.intro {
+  max-width: 620px;
+}
+
+.intro__title {
+  margin: 0 0 18px;
+  font-size: clamp(30px, 3.4vw, 46px);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.intro__name {
+  color: var(--accent);
+}
+
+.intro__spark {
+  color: var(--accent);
+  font-weight: 700;
+  margin-left: 2px;
+}
+
+.intro__text {
+  margin: 0 0 65px;
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 620px;
+}
+
+/* ---------- photo frame + doodles ---------- */
+
+.photo-wrap {
+  position: relative;
+  width: min(34vw, 560px);
+  aspect-ratio: 645 / 425;
+}
+
+.photo-frame {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--frame-bg);
+  border-radius: 6px;
+  padding: 3.5% 3.5% 8%;
+  box-shadow: 0 18px 40px rgba(46, 43, 39, 0.12);
+}
+
+.photo-frame__inner {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.photo-frame__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(155deg, #ded4c1, #cabfa9);
+  color: rgba(46, 43, 39, 0.45);
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+.photo-frame__inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.doodle {
+  position: absolute;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.8;
+  user-select: none;
+}
+
+.doodle--flower {
+  width: 42%;
+  left: -21%;
+  top: -39%;
+}
+
+.doodle--vine {
+  width: 64%;
+  right: -34%;
+  bottom: -12%;
+}
+
+/* ---------- folders ---------- */
+/* positions measured from the reference composition (percent of .desktop box) */
+
+.folders {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.folder {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: var(--ink);
+  width: 96px;
+  cursor: none;
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.folder:hover,
+.folder:focus-visible {
+  transform: translateY(-4px);
+  filter: drop-shadow(0 8px 10px rgba(46, 43, 39, 0.18));
+}
+
+.folder:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.folder__icon {
+  width: 68px;
+  height: auto;
+  display: block;
+}
+
+.folder__label {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.folder--about      { left: 62%; top: 25%; }
+.folder--currently  { left: 84%; top: 39%; }
+.folder--work       { left: 68%; top: 51%; }
+.folder--contact    { left: 81%; top: 66%; }
+.folder--archive    { left: 58%; top: 75%; }
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 900px) {
+  .desktop {
+    padding: 48px 6vw 40px;
+  }
+
+  .photo-wrap {
+    width: min(80vw, 460px);
+  }
+
+  .doodle--vine {
+    width: 48%;
+    right: -18%;
+    bottom: -8%;
+  }
+
+  .doodle--flower {
+    width: 36%;
+    left: -14%;
+    top: -30%;
+  }
+
+  .folders {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px 12px;
+    margin-top: 56px;
+    max-width: 420px;
+  }
+
+  .folder {
+    position: static;
+    width: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .topbar {
+    padding: 16px 24px;
+  }
+
+  .bottombar {
+    padding: 20px 24px;
+  }
+
+  .bottombar__label {
+    font-size: 12px;
+  }
+
+  .desktop {
+    padding: 40px 24px 32px;
+  }
+
+  .intro__text {
+    margin-bottom: 36px;
+  }
+
+  .photo-wrap {
+    width: 100%;
+  }
+
+  .doodle--vine {
+    width: 36%;
+    right: -3%;
+    bottom: -5%;
+  }
+
+  .doodle--flower {
+    width: 30%;
+    left: -6%;
+    top: -20%;
+  }
+
+  .folders {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 320px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .folder {
+    transition: none;
+  }
+}
+
+/* ---------- dialogue window ---------- */
+
+.dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+
+  background: rgba(46, 43, 39, 0.12);
+  backdrop-filter: blur(3px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease;
+}
+
+.dialog.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.dialog__window {
+  width: min(820px, 92vw);
+  max-height: min(780px, 86vh);
+
+  display: flex;
+  flex-direction: column;
+
+  background: var(--bg);
+  border: 1px solid rgba(46, 43, 39, 0.25);
+  border-radius: 8px;
+
+  box-shadow:
+    0 24px 60px rgba(46, 43, 39, 0.2),
+    0 4px 12px rgba(46, 43, 39, 0.08);
+
+  transform: translateY(12px) scale(0.97);
+  transition: transform 0.2s ease;
+
+  overflow: hidden;
+}
+
+.dialog.is-open .dialog__window {
+  transform: translateY(0) scale(1);
+}
+
+/* little title bar */
+
+.dialog__bar {
+  min-height: 42px;
+  padding: 0 12px 0 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: rgba(196, 186, 168, 0.25);
+  border-bottom: 1px solid rgba(46, 43, 39, 0.15);
+}
+
+.dialog__title {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--header-text);
+  letter-spacing: 0.04em;
+}
+
+.dialog__close {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  border: 0;
+  background: transparent;
+
+  font-family: var(--font-mono);
+  font-size: 22px;
+  line-height: 1;
+  color: var(--ink-soft);
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.dialog__close:hover {
+  background: rgba(46, 43, 39, 0.08);
+  color: var(--ink);
+  border-radius: 4px;
+  cursor: none;
+}
+
+/* content */
+
+.dialog__content {
+  padding: 32px;
+  overflow-y: auto;
+
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.dialog__content h2 {
+  margin: 0 0 12px;
+
+  font-size: 26px;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.dialog__content p {
+  margin: 0 0 18px;
+}
+
+.dialog__content p:last-child {
+  margin-bottom: 0;
+}
+
+/* mobile */
+
+@media (max-width: 520px) {
+  .dialog {
+    padding: 18px;
+  }
+
+  .dialog__window {
+    width: 100%;
+    max-height: 82vh;
+  }
+
+  .dialog__content {
+    padding: 24px 22px;
+    font-size: 14px;
+  }
+
+  .dialog__content h2 {
+    font-size: 23px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog,
+  .dialog__window,
+  .dialog__close {
+    transition: none;
+  }
+}
+
+/* ---------- star cursor ---------- */
+
+/* ---------- star cursor + stardust ---------- */
+
+.star-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: 9999;
+  pointer-events: none;
+
+  color: #2e2b27;
+  font-family: serif;
+  font-size: 28px;
+  line-height: 1;
+
+  transform: translate(-50%, -50%);
+
+  filter: drop-shadow(
+    0 1px 3px rgba(124, 143, 74, 0.3)
+  );
+
+  transition:
+    font-size 0.15s ease,
+    transform 0.15s ease;
+}
+
+
+/* ---------- individual stardust particles ---------- */
+
+.stardust-particle {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: 9998;
+  pointer-events: none;
+
+  color: #2e2b27;
+  font-family: serif;
+  line-height: 1;
+
+  transform: translate(-50%, -50%);
+
+  animation: stardust-fade 0.9s ease-out forwards;
+}
+
+
+@keyframes stardust-fade {
+
+  0% {
+    opacity: 0.85;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate(
+        calc(-50% + var(--drift-x)),
+        calc(-50% + var(--drift-y))
+      )
+      scale(0.15);
+  }
+
+}
+
+
+/* ---------- cursor reacts to folders ---------- */
+
+body.cursor-hover .star-cursor {
+  font-size: 32px;
+}
+
+
+/* ---------- touch devices ---------- */
+
+@media (hover: none), (pointer: coarse) {
+
+  .star-cursor,
+  .stardust-particle {
+    display: none;
+  }
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  .star-cursor,
+  .stardust-particle {
+    display: none;
+  }
+
+}
+
+/* hide default cursor on desktop */
+
+@media (hover: hover) and (pointer: fine) {
+  body, 
+  a,
+  button {
+    cursor: none;
+  }
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.contact-links a {
+  width: fit-content;
+
+  color: var(--ink);
+  text-decoration: none;
+
+  font-family: var(--font-mono);
+  font-size: 13px;
+
+  transition:
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.contact-links a:hover {
+  color: var(--accent);
+  transform: translateX(5px);
+}
+
+.contact-signoff {
+  margin-top: 34px !important;
+
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+/* ---------- work content ---------- */
+
+.work-section {
+  margin-top: 42px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(46, 43, 39, 0.14);
+}
+
+.work-section h3 {
+  margin: 0 0 10px;
+
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.work-section > p {
+  max-width: 680px;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 26px;
+}
+
+.work-card {
+  margin: 0;
+}
+
+.work-card img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+
+  border-radius: 4px;
+  background: rgba(196, 186, 168, 0.25);
+
+  box-shadow: 0 8px 20px rgba(46, 43, 39, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.work-card:hover img {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(46, 43, 39, 0.14);
+}
+
+.work-card figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  padding-top: 10px;
+
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.work-card figcaption strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.work-card figcaption span {
+  color: var(--ink-soft);
+}
+
+.work-note {
+  margin-top: 18px !important;
+
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+.coming-soon {
+  padding-bottom: 8px;
+}
+
+
+/* ---------- archive ---------- */
+
+.archive-feature {
+  margin-top: 30px;
+  padding: 22px;
+
+  background: rgba(196, 186, 168, 0.16);
+  border: 1px solid rgba(46, 43, 39, 0.12);
+  border-radius: 6px;
+}
+
+.archive-label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.archive-feature p {
+  margin-bottom: 18px;
+}
+
+.archive-feature a {
+  color: var(--accent);
+  text-decoration: none;
+
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.archive-feature a:hover {
+  text-decoration: underline;
+}
+
+.archive-note {
+  margin-top: 18px !important;
+
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+
+/* ---------- currently ---------- */
+
+/* ---------- currently ---------- */
+
+.currently-item {
+  margin: 28px 0;
+  padding-left: 18px;
+  border-left: 2px solid rgba(124, 143, 74, 0.45);
+}
+
+.currently-label {
+  display: block;
+  margin-bottom: 5px;
+
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+
+  color: var(--accent);
+}
+
+.currently-item p {
+  margin: 0;
+
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.currently-item a,
+.currently-item a:visited,
+.currently-item a:active {
+  color: var(--ink);
+  text-decoration: none;
+
+  font-family: var(--font-mono);
+  font-size: 13px;
+
+  transition:
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.currently-item a:hover {
+  color: var(--accent);
+  transform: translateX(5px);
+}
+
+
+
+/* ---------- work responsive ---------- */
+
+@media (max-width: 650px) {
+
+  .work-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+}
+
+@media (max-width: 420px) {
+
+  .work-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+.currently-item a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(46, 43, 39, 0.35);
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.currently-item a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
