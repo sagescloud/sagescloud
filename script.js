@@ -6,7 +6,456 @@ const dialogTitle = document.querySelector("#dialog-title");
 const dialogContent = document.querySelector("#dialog-content");
 const dialogClose = document.querySelector(".dialog__close");
 
+
+// ---------- work content ----------
+
+const workIndex = `
+  <h2>things that escaped my notebook</h2>
+
+  <p>
+    a collection of posters, visual experiments, websites, and
+    other things i've made along the way.
+  </p>
+
+
+  <!-- ---------- the common room ---------- -->
+
+  <div class="work-section work-project">
+
+    <button class="project-open" data-project="common-room">
+      <div class="project-open__text">
+        <strong>the common room</strong>
+        <span>a student collective for ideas, technology & culture</span>
+      </div>
+
+      <span class="project-open__arrow">↗</span>
+    </button>
+
+  </div>
+
+
+  <!-- ---------- people i can't stop thinking about ---------- -->
+
+  <div class="work-section">
+
+    <h3>people i can't stop thinking about</h3>
+
+    <p>
+      a work-in-progress series about people i find deeply intriguing —
+      people whose work, personality, stories, or presence have made
+      me curious enough to keep thinking about them.
+    </p>
+
+    <div class="work-grid">
+
+      <figure class="work-card">
+        <img src="assets/patti-smith.jpg" alt="patti smith poster">
+
+        <figcaption>
+          <strong>patti smith</strong>
+          <span><i>who tf is patti smith?</i></span>
+          <span>
+            a reflection on the many versions of patti smith —
+            the poet, musician, writer, artist, and new yorker.
+          </span>
+        </figcaption>
+      </figure>
+
+
+      <figure class="work-card">
+        <img src="assets/vivienne-westwood.jpg" alt="vivienne westwood poster">
+
+        <figcaption>
+          <strong>vivienne westwood</strong>
+          <span><i>be reasonable</i></span>
+          <span>
+            a reflection on someone who consistently challenged
+            convention and refused to accept the world as it was.
+          </span>
+        </figcaption>
+      </figure>
+
+
+      <figure class="work-card">
+        <img src="assets/jane-birkin.jpg" alt="jane birkin poster">
+
+        <figcaption>
+          <strong>jane birkin</strong>
+          <span><i>somewhere in between</i></span>
+          <span>
+            a portrait of someone caught between places, cultures,
+            identities, and the mythology built around her.
+          </span>
+        </figcaption>
+      </figure>
+
+    </div>
+
+    <p class="work-note">
+      wip — there are definitely more people i want to add.
+    </p>
+
+  </div>
+
+
+ <!-- ---------- visual experiments ---------- -->
+
+     <div class="work-section">
+
+       <h3>visual experiments</h3>
+
+       <p>
+         standalone pieces exploring different subjects, moods, and
+         visual ideas. these aren't necessarily part of one series —
+         they're simply projects that let me experiment with different
+         ways of communicating an idea visually.
+       </p>
+
+       <div class="work-grid">
+
+         <figure class="work-card">
+           <img src="assets/malcolm-marie.jpg"
+                alt="reimagined malcolm and marie poster">
+           <figcaption>
+             <strong>malcolm & marie</strong>
+             <span>a reimagining of malcolm & marie that explores the tension between
+             intimacy, ego, love, and resentment at the centre of their relationship.
+             the poster focuses on the complicated space between two people who know
+             each other deeply but still struggle to understand each other.</span>
+           </figcaption>
+         </figure>
+
+         <figure class="work-card">
+           <img src="assets/kyoto-tower.jpg"
+                alt="kyoto tower poster">
+           <figcaption>
+             <strong>the tower of kyoto</strong>
+             <span>a retro-inspired interpretation of kyoto tower, looking at the landmark
+             as a symbol of the meeting point between an older city and its changing future.
+             it explores the strange feeling of looking at a place through the lens of another era.</span>
+           </figcaption>
+         </figure>
+
+         <figure class="work-card">
+           <img src="assets/hinode.jpg"
+                alt="hinode spacecraft poster">
+           <figcaption>
+             <strong>hinode</strong>
+             <span>a retro-inspired tribute to hinode, a spacecraft dedicated to
+             observing the sun. the piece explores humanity’s fascination with looking beyond ourselves
+              and trying to understand something as immense and unreachable as the sun.</span>
+           </figcaption>
+         </figure>
+
+       </div>
+
+     </div>
+
+  <!-- ---------- visual poetry ---------- -->
+
+  <div class="work-section coming-soon">
+
+    <h3>visual poetry</h3>
+
+    <p>
+      coming soon — a series of small visual experiments built around
+      poetry, fragments of thought, and the relationship between
+      words and images.
+    </p>
+
+  </div>
+`;
+
+
+// ---------- the common room case study ----------
+
+const commonRoom = `
+  <button class="back-to-work" type="button">
+    ← back to work
+  </button>
+
+
+  <h2>the common room</h2>
+
+  <p class="case-study-subtitle">
+    a student collective for ideas, technology & culture
+  </p>
+
+
+  <p>
+    the common room is a fictional student collective built around
+    a simple idea: good ideas deserve a place to gather.
+  </p>
+
+  <p>
+    it is imagined as a space where students can explore technology,
+    culture, design, and the strange things that exist somewhere in
+    between — through talks, experiments, games, screenings,
+    workshops, and conversations.
+  </p>
+
+  <p>
+    for this project, i built the collective from the ground up:
+    its name, visual identity, and a small programme of events that
+    each explore a different side of student life and technology.
+  </p>
+
+  <p>
+    the challenge was making each event feel distinct while still
+    making it immediately recognisable as part of the common room.
+  </p>
+
+
+  <!-- ---------- identity ---------- -->
+
+  <div class="case-study-block">
+
+    <h4>the identity</h4>
+
+    <p class="case-study-heading">
+      making a room feel like a place
+    </p>
+
+    <p>
+      the common room isn't meant to feel like an institution.
+    </p>
+
+    <p>
+      it is informal, curious, slightly experimental, and made for
+      people who are just as likely to show up with a weird question
+      as they are with a finished idea.
+    </p>
+
+    <p>
+      the identity needed to be flexible enough to hold very
+      different kinds of events without becoming visually generic.
+    </p>
+
+
+    <div class="identity-grid">
+
+      <figure class="work-card">
+        <img
+          src="assets/common-room-logo.jpg"
+          alt="the common room logo"
+        >
+
+        <figcaption>
+          <strong>the logo</strong>
+          <span>the anchor of the identity.</span>
+        </figcaption>
+      </figure>
+
+
+      <figure class="work-card">
+        <img
+          src="assets/common-room-wordmark.jpg"
+          alt="the common room wordmark"
+        >
+
+        <figcaption>
+          <strong>the wordmark</strong>
+          <span>the name of the room.</span>
+        </figcaption>
+      </figure>
+
+    </div>
+
+
+    <p>
+      rather than creating a rigid corporate mark, i wanted the
+      identity to feel like something that could belong on a
+      noticeboard, a screen, a notebook, a sticker, or the corner
+      of a poster.
+    </p>
+
+    <p class="case-study-emphasis">
+      one collective. many ways in.
+    </p>
+
+  </div>
+
+
+  <!-- ---------- programme ---------- -->
+
+  <div class="case-study-block">
+
+    <h4>the programme</h4>
+
+    <p class="case-study-heading">
+      four events. four different questions.
+    </p>
+
+    <p>
+      each event was treated as its own visual world while remaining
+      connected to the larger common room identity.
+    </p>
+
+
+    <div class="common-room-grid">
+
+
+      <!-- 01 -->
+
+      <figure class="work-card">
+
+        <img
+          src="assets/the-human-interface.jpg"
+          alt="the human interface event poster"
+        >
+
+        <figcaption>
+          <strong>01 — the human interface</strong>
+
+          <span>
+           a poster for a conversation about the relationship between people and technology. 
+           it represents the idea that technology should adapt to people, rather than expecting 
+           people to constantly adapt to it.
+          </span>
+        </figcaption>
+
+      </figure>
+
+
+      <!-- 02 -->
+
+      <figure class="work-card">
+
+        <img
+          src="assets/protocol-01.jpg"
+          alt="protocol 01 event poster"
+        >
+
+        <figcaption>
+          <strong>02 — protocol 01</strong>
+
+          <span>
+            a poster for a fictional problem-solving event built around the 
+            feeling of entering a system you weren't supposed to find. it represents
+             curiosity, discovery, and the instinct to keep looking when something doesn't
+              quite make sense.
+          </span>
+        </figcaption>
+
+      </figure>
+
+
+      <!-- 03 -->
+
+      <figure class="work-card">
+
+        <img
+          src="assets/the-last-move.jpg"
+          alt="the last move event poster"
+        >
+
+        <figcaption>
+          <strong>03 — the last move</strong>
+
+          <span>
+            a poster for a strategy-based event centred around anticipation and decision-making.
+             it represents the tension of having to think ahead, read the situation, and decide 
+             when — and whether — to make a move.
+          </span>
+        </figcaption>
+
+      </figure>
+
+
+      <!-- 04 -->
+
+      <figure class="work-card">
+
+        <img
+          src="assets/retrograde.jpg"
+          alt="retrograde event poster"
+        >
+
+        <figcaption>
+          <strong>04 — retrograde</strong>
+
+          <span>
+            a poster for an exploration of digital nostalgia and the interfaces that 
+            shaped our early experiences with technology. it represents the strange familiarity 
+            of things that feel outdated, but still somehow belong to us.
+          </span>
+        </figcaption>
+
+      </figure>
+
+    </div>
+
+  </div>
+
+
+  <!-- ---------- building the system ---------- -->
+
+  <div class="case-study-block">
+
+    <h4>building the system</h4>
+
+    <p>
+      the four events intentionally don't look identical.
+    </p>
+
+    <p>
+      instead, they share a common foundation: the same collective,
+      the same sense of curiosity, and the same willingness to
+      experiment.
+    </p>
+
+    <p>
+      the visual identity becomes a framework rather than a template.
+      that meant each event could develop its own typography,
+      imagery, composition, colour, and visual language while still
+      feeling like it belonged to the common room.
+    </p>
+
+    <p class="case-study-emphasis">
+      four different doors into the same room.
+    </p>
+
+  </div>
+
+
+  <!-- ---------- why ---------- -->
+
+  <div class="case-study-block">
+
+    <h4>why the common room?</h4>
+
+    <p>
+      i liked the idea of a student collective that didn't have to
+      define itself too narrowly.
+    </p>
+
+    <p>
+      the name comes from the idea of a shared space — somewhere
+      people can come in, stay for a while, exchange ideas, make
+      things, disagree, experiment, or simply be curious.
+    </p>
+
+    <p>
+      there doesn't need to be one subject tying everything together.
+    </p>
+
+    <p class="case-study-emphasis">
+      the common thread is the people in the room.
+    </p>
+
+    <p>
+      and that's what the project is really about:
+      making space for ideas to happen.
+    </p>
+
+  </div>
+`;
+
+
+// ---------- folder content ----------
+
 const folderContent = {
+
   about: {
     title: "about",
     content: `
@@ -40,6 +489,7 @@ const folderContent = {
     `
   },
 
+
   currently: {
     title: "currently",
     content: `
@@ -47,181 +497,116 @@ const folderContent = {
 
       <div class="currently-item">
         <span class="currently-label">listening to</span>
+
         <p>
-        <a href="https://open.spotify.com/album/64xtjfsPHNHch0CZ7fPTjS?si=8sETgP6iRY-MdAgOO-7Brg&utm_source=copy-link" target="_blank" rel="noopener">
-         carrie & lowell ↗
-         </a>
+          <a
+            href="https://open.spotify.com/album/64xtjfsPHNHch0CZ7fPTjS?si=8sETgP6iRY-MdAgOO-7Brg&utm_source=copy-link"
+            target="_blank"
+            rel="noopener"
+          >
+            carrie & lowell ↗
+          </a>
         </p>
       </div>
 
+
       <div class="currently-item">
         <span class="currently-label">reading</span>
+
         <p>
-          <a href="https://www.goodreads.com/book/show/55209431-intermezzo" target="_blank" rel="noopener">
+          <a
+            href="https://www.goodreads.com/book/show/55209431-intermezzo"
+            target="_blank"
+            rel="noopener"
+          >
             intermezzo by sally rooney ↗
           </a>
         </p>
       </div>
 
+
       <div class="currently-item">
         <span class="currently-label">watching</span>
+
         <p>
-          <a href="https://www.imdb.com/title/tt10449912/" target="_blank" rel="noopener">
+          <a
+            href="https://www.imdb.com/title/tt10449912/"
+            target="_blank"
+            rel="noopener"
+          >
             mare of easttown ↗
           </a>
         </p>
       </div>
 
+
       <div class="currently-item">
         <span class="currently-label">learning / making</span>
+
         <p>creative coding</p>
       </div>
     `
   },
 
+
   work: {
     title: "work",
+    content: workIndex
+  },
+
+
+  contact: {
+    title: "contact",
     content: `
-      <h2>things that escaped my notebook</h2>
+      <h2>let's stay in touch</h2>
 
       <p>
-        a collection of posters, visual experiments, websites, and
-        other things i've made along the way.
+        if something here made you pause, or wonder, or want to make
+        something together, i'd love to hear from you.
       </p>
 
-      <div class="work-section">
+      <div class="contact-links">
+        <a href="mailto:sagnikaxsinha@gmail.com">email ↗</a>
 
-        <h3>people i can't stop thinking about</h3>
+        <a
+          href="https://github.com/sagescloud"
+          target="_blank"
+          rel="noopener"
+        >
+          github ↗
+        </a>
 
-        <p>
-          a work-in-progress series about people i find deeply intriguing —
-          people whose work, personality, stories, or presence have made
-          me curious enough to keep thinking about them.
-        </p>
+        <a
+          href="https://linkedin.com/in/sagnika-sinha"
+          target="_blank"
+          rel="noopener"
+        >
+          linkedin ↗
+        </a>
 
-        <div class="work-grid">
+        <a
+          href="https://substack.com/@lettersfromsage"
+          target="_blank"
+          rel="noopener"
+        >
+          substack ↗
+        </a>
 
-          <figure class="work-card">
-            <img src="assets/patti-smith.jpg" alt="patti smith poster">
-            <figcaption>
-              <strong>patti smith</strong>
-              <span><i>who tf is patti smith?</i></span>
-              <span>a playful question about the many versions of patti smith — 
-              the poet, musician, writer, artist, and new yorker. the poster is an attempt to capture
-               just how much exists behind a name that is often reduced to a single image.</span>
-            </figcaption>
-          </figure>
-
-          <figure class="work-card">
-            <img src="assets/vivienne-westwood.jpg" alt="vivienne westwood poster">
-            <figcaption>
-              <strong>vivienne westwood</strong>
-              <span><i>be reasonable</i></span>
-              <span>a reflection on vivienne westwood as someone who consistently 
-              challenged convention through fashion, art, politics, and activism. it represents her refusal
-               to accept the world as it is and her instinct to question, disrupt, and demand more from it.</span>
-            </figcaption>
-          </figure>
-
-          <figure class="work-card">
-            <img src="assets/jane-birkin.jpg" alt="jane birkin poster">
-            <figcaption>
-              <strong>jane birkin</strong>
-              <span><i>somewhere in between</i></span>
-              <span>a portrait of jane birkin as a figure caught between places, cultures,
-               and identities. it explores the contrast between the person she was and the almost mythological
-                image that grew around her over time.</span>
-            </figcaption>
-          </figure>
-
-        </div>
-
-        <p class="work-note">
-          wip — there are definitely more people i want to add.
-        </p>
-
+        <a
+          href="https://instagram.com/sagnika.sinha"
+          target="_blank"
+          rel="noopener"
+        >
+          instagram ↗
+        </a>
       </div>
 
-
-      <div class="work-section">
-
-        <h3>visual experiments</h3>
-
-        <p>
-          a collection of standalone pieces exploring different subjects,
-          moods, and visual ideas. these aren't necessarily part of one
-          series — they're simply projects that let me experiment with
-          different ways of communicating an idea visually.
-        </p>
-
-        <div class="work-grid">
-
-          <figure class="work-card">
-            <img src="assets/malcolm-marie.jpg" alt="reimagined malcolm and marie poster">
-            <figcaption>
-              <strong>malcolm & marie</strong>
-              <span>reimagined film poster</span>
-            </figcaption>
-          </figure>
-
-          <figure class="work-card">
-            <img src="assets/kyoto-tower.jpg" alt="kyoto tower poster">
-            <figcaption>
-              <strong>kyoto tower</strong>
-              <span>retro visual experiment</span>
-            </figcaption>
-          </figure>
-
-          <figure class="work-card">
-            <img src="assets/hinode.jpg" alt="hinode spacecraft poster">
-            <figcaption>
-              <strong>hinode</strong>
-              <span>retro visual experiment</span>
-            </figcaption>
-          </figure>
-
-        </div>
-
-      </div>
-
-
-      <div class="work-section coming-soon">
-
-        <h3>visual poetry</h3>
-
-        <p>
-          coming soon — a series of small visual experiments built around
-          poetry, fragments of thought, and the relationship between
-          words and images.
-        </p>
-
-      </div>
+      <p class="contact-signoff">
+        see you around the internet.
+      </p>
     `
   },
 
-  contact: {
-  title: "contact",
-  content: `
-    <h2>let's stay in touch</h2>
-
-    <p>
-      if something here made you pause, or wonder, or want to make something together, 
-      i'd love to hear from you.
-    </p>
-
-    <div class="contact-links">
-      <a href="mailto:sagnikaxsinha@gmail.com">email ↗</a>
-      <a href="https://github.com/sagescloud" target="_blank" rel="noopener">github ↗</a>
-      <a href="https://linkedin.com/in/sagnika-sinha" target="_blank" rel="noopener">linkedin ↗</a>
-      <a href="https://substack.com/@lettersfromsage" target="_blank" rel="noopener">substack ↗</a>
-      <a href="https://instagram.com/sagnika.sinha" target="_blank" rel="noopener">instagram ↗</a>
-    </div>
-
-    <p class="contact-signoff">
-      see you around the internet.
-    </p>
-  `
-},
 
   archive: {
     title: "archive",
@@ -264,88 +649,174 @@ const folderContent = {
       </p>
     `
   }
+
 };
 
 
-// open a folder's window
+// ---------- render folder ----------
+
+function renderFolder(folderName) {
+
+  const data = folderContent[folderName];
+
+  if (!data) return;
+
+  dialogTitle.textContent = data.title;
+  dialogContent.innerHTML = data.content;
+
+  dialogContent.scrollTop = 0;
+
+  dialog.classList.add("is-open");
+  dialog.setAttribute("aria-hidden", "false");
+
+  dialogClose.focus();
+}
+
+
+// ---------- open folders ----------
 
 document.querySelectorAll(".folder").forEach((folder) => {
 
   folder.addEventListener("click", (event) => {
+
     event.preventDefault();
 
     const section = folder.className
       .split(" ")
-      .find((className) => className.startsWith("folder--"));
+      .find((className) =>
+        className.startsWith("folder--")
+      );
 
     if (!section) return;
 
-    const folderName = section.replace("folder--", "");
-    const data = folderContent[folderName];
+    const folderName =
+      section.replace("folder--", "");
 
-    if (!data) return;
+    renderFolder(folderName);
 
-    dialogTitle.textContent = data.title;
-    dialogContent.innerHTML = data.content;
-
-    dialog.classList.add("is-open");
-    dialog.setAttribute("aria-hidden", "false");
-
-    dialogClose.focus();
   });
 
 });
 
 
-// close button
+// ---------- open common room ----------
 
-dialogClose.addEventListener("click", closeDialog);
+dialogContent.addEventListener("click", (event) => {
 
+  const projectButton =
+    event.target.closest(".project-open");
 
-// clicking the area outside the window closes it
+  if (projectButton) {
 
-dialog.addEventListener("click", (event) => {
-  if (event.target === dialog) {
-    closeDialog();
+    const project =
+      projectButton.dataset.project;
+
+    if (project === "common-room") {
+
+      dialogTitle.textContent = "the common room";
+
+      dialogContent.innerHTML = commonRoom;
+
+      dialogContent.scrollTop = 0;
+
+    }
+
+    return;
   }
+
+
+  // ---------- back to work ----------
+
+  const backButton =
+    event.target.closest(".back-to-work");
+
+  if (backButton) {
+
+    dialogTitle.textContent = "work";
+
+    dialogContent.innerHTML = workIndex;
+
+    dialogContent.scrollTop = 0;
+
+  }
+
 });
 
 
-// Escape closes the window
+// ---------- close button ----------
 
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && dialog.classList.contains("is-open")) {
+dialogClose.addEventListener(
+  "click",
+  closeDialog
+);
+
+
+// ---------- clicking outside closes window ----------
+
+dialog.addEventListener("click", (event) => {
+
+  if (event.target === dialog) {
     closeDialog();
   }
+
+});
+
+
+// ---------- escape closes window ----------
+
+document.addEventListener("keydown", (event) => {
+
+  if (
+    event.key === "Escape" &&
+    dialog.classList.contains("is-open")
+  ) {
+
+    closeDialog();
+
+  }
+
 });
 
 
 function closeDialog() {
+
   dialog.classList.remove("is-open");
-  dialog.setAttribute("aria-hidden", "true");
+
+  dialog.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
 }
 
 
 // ---------- star cursor + stardust ----------
 
-const starCursor = document.querySelector(".star-cursor");
+const starCursor =
+  document.querySelector(".star-cursor");
 
 let lastParticleTime = 0;
+
 
 document.addEventListener("mousemove", (event) => {
 
   const x = event.clientX;
   const y = event.clientY;
 
-  // move the star
+
+  // move star
+
   starCursor.style.left = `${x}px`;
   starCursor.style.top = `${y}px`;
 
 
-  // limit how many particles are created
+  // limit particles
+
   const now = Date.now();
 
-  if (now - lastParticleTime < 35) {
+  if (
+    now - lastParticleTime < 35
+  ) {
     return;
   }
 
@@ -358,12 +829,13 @@ document.addEventListener("mousemove", (event) => {
 
 function createStardust(x, y) {
 
-  const particle = document.createElement("span");
+  const particle =
+    document.createElement("span");
 
-  particle.className = "stardust-particle";
+  particle.className =
+    "stardust-particle";
 
 
-  // different little celestial symbols
   const symbols = [
     "·",
     "·",
@@ -375,11 +847,17 @@ function createStardust(x, y) {
     "•"
   ];
 
+
   particle.textContent =
-    symbols[Math.floor(Math.random() * symbols.length)];
+    symbols[
+      Math.floor(
+        Math.random() * symbols.length
+      )
+    ];
 
 
   // random size
+
   const size =
     Math.random() * 8 + 5;
 
@@ -388,11 +866,13 @@ function createStardust(x, y) {
 
 
   // random drift
+
   const driftX =
     (Math.random() - 0.5) * 34;
 
   const driftY =
     (Math.random() - 0.5) * 34;
+
 
   particle.style.setProperty(
     "--drift-x",
@@ -405,17 +885,19 @@ function createStardust(x, y) {
   );
 
 
-  // position particle where cursor is
   particle.style.left = `${x}px`;
   particle.style.top = `${y}px`;
 
 
-  document.body.appendChild(particle);
+  document.body.appendChild(
+    particle
+  );
 
 
-  // remove after animation
   setTimeout(() => {
+
     particle.remove();
+
   }, 900);
 
 }
@@ -425,12 +907,23 @@ function createStardust(x, y) {
 
 document.querySelectorAll(".folder").forEach((folder) => {
 
-  folder.addEventListener("mouseenter", () => {
-    document.body.classList.add("cursor-hover");
-  });
+  folder.addEventListener(
+    "mouseenter",
+    () => {
+      document.body.classList.add(
+        "cursor-hover"
+      );
+    }
+  );
 
-  folder.addEventListener("mouseleave", () => {
-    document.body.classList.remove("cursor-hover");
-  });
+
+  folder.addEventListener(
+    "mouseleave",
+    () => {
+      document.body.classList.remove(
+        "cursor-hover"
+      );
+    }
+  );
 
 });
