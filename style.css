@@ -972,7 +972,7 @@ body.cursor-hover .star-cursor {
 
   font-family: var(--font-mono);
 
-  cursor: pointer;
+  cursor: none;
 
   transition:
     background-color 0.18s ease,
@@ -1035,7 +1035,7 @@ body.cursor-hover .star-cursor {
 
   color: var(--ink-soft);
 
-  cursor: pointer;
+  cursor: none;
 
   transition:
     color 0.18s ease,
@@ -1158,3 +1158,4 @@ body.cursor-hover .star-cursor {
   }
 
 }
+
